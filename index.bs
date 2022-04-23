@@ -16,17 +16,22 @@ Boilerplate: conformance no
 
 ## Clipboard and copy/paste user interface model
 Clipboard is a user interface abstraction commonly available among modern GUI-based operating systems. Users may select a piece of information from the part of the document user are currently editing or viewing, then copy the selected piece of information into the Clipboard that is part of the application or underlying operating system. The user then pastes the information into the same document or other documents - even in a different application program via Clipboard - as many times the user wants. This copy-and-paste abstraction is straightforward to understand. Some vendors provide a way to copy and paste to work among multiple devices.
+
 Clipboard may contain multiple representations of the copied information. I.e., a word processing app may write values to the Clipboard in text, formatted text, and even in HTML format. A drawing software may contain multiple standard image formats, both in vector and raster graphics, alongside internal representation. The representation can be either in binary or text. When the application reads the Clipboard, it selects the best representation for the current context.
 
 ## Web Form
 A web page may contain [[HTML#forms|web forms]] accompanied by multiple input elements.
-A web form is usually accompanied by a submit button or similar clickable items bound to JavaScript code to send the filled input elements values to a server to process. The user selects an element to fill these input elements, then types from the keyboard or pastes from Clipboard. Since the source of data for the input elements is either from Clipboard or human input devices such as keyboard and JavaScript code, the validity of the value of these fields is unknown.
+A web form is usually accompanied by a submit button or similar clickable items bound to JavaScript code to send the filled input elements values to a server to process. The user selects an element to fill these input elements, then types from the keyboard or pastes from Clipboard.
+
+Since the source of data for the input elements is either from Clipboard or human input devices such as keyboard and JavaScript code, the validity of the value of these fields is unknown.
 
 ## Verifiable Credentials
 Verifiable Credentials [[VC-DATA-MODEL]] (VC from now on) is a data model which provides a
 way to express credentials
 on the Web.
+
 One of the descriptions from the VC document states: "Information related to specific attributes or properties being asserted by the issuing authority about the subject (for example, nationality, the classes of vehicle entitled to drive, or date of birth)."
+
 In a VC, The property named `credentialSubject` contains key-value pairs of the attributes or the properties.
 
 # Verifiable Web Form
@@ -100,4 +105,4 @@ This topic will be a good discussion topic for Verifiable Web From discussion an
 
 # Privacy Considerations
 
-1. Since Clipboard is a shared resource among processes running on the application, the copied VCs are accessible from the processes monitoring the Clipboard. This clipboard content's visibility may cause privacy risks.
+1. Since Clipboard is a shared resource among processes running on a computer, the copied VCs are accessible from the processes monitoring the Clipboard. This clipboard content's visibility may cause privacy risks.

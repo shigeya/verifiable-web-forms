@@ -1488,7 +1488,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version 892b2a4c8, updated Thu Mar 31 08:06:19 2022 -0700" name="generator">
-  <meta content="b4d614fc2d69fe488a1dd405bb717b27ad1e6980" name="document-revision">
+  <meta content="d10993e0bddb5946af2a0d63d4f12931395f7e91" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1943,17 +1943,18 @@ dfn > a.self-link::before      { content: "#"; }
   <main>
    <h2 class="heading settled" data-level="1" id="background-and-terms"><span class="secno">1. </span><span class="content">Background and Terms</span><a class="self-link" href="#background-and-terms"></a></h2>
    <h3 class="heading settled" data-level="1.1" id="clipboard-and-copy-paste-user-interface-model"><span class="secno">1.1. </span><span class="content">Clipboard and copy/paste user interface model</span><a class="self-link" href="#clipboard-and-copy-paste-user-interface-model"></a></h3>
-    Clipboard is a user interface abstraction commonly available among modern GUI-based operating systems. Users may select a piece of information from the part of the document user are currently editing or viewing, then copy the selected piece of information into the Clipboard that is part of the application or underlying operating system. The user then pastes the information into the same document or other documents - even in a different application program via Clipboard - as many times the user wants. This copy-and-paste abstraction is straightforward to understand. Some vendors provide a way to copy and paste to work among multiple devices.
-Clipboard may contain multiple representations of the copied information. I.e., a word processing app may write values to the Clipboard in text, formatted text, and even in HTML format. A drawing software may contain multiple standard image formats, both in vector and raster graphics, alongside internal representation. The representation can be either in binary or text. When the application reads the Clipboard, it selects the best representation for the current context. 
+    Clipboard is a user interface abstraction commonly available among modern GUI-based operating systems. Users may select a piece of information from the part of the document user are currently editing or viewing, then copy the selected piece of information into the Clipboard that is part of the application or underlying operating system. The user then pastes the information into the same document or other documents - even in a different application program via Clipboard - as many times the user wants. This copy-and-paste abstraction is straightforward to understand. Some vendors provide a way to copy and paste to work among multiple devices. 
+   <p>Clipboard may contain multiple representations of the copied information. I.e., a word processing app may write values to the Clipboard in text, formatted text, and even in HTML format. A drawing software may contain multiple standard image formats, both in vector and raster graphics, alongside internal representation. The representation can be either in binary or text. When the application reads the Clipboard, it selects the best representation for the current context.</p>
    <h3 class="heading settled" data-level="1.2" id="web-form"><span class="secno">1.2. </span><span class="content">Web Form</span><a class="self-link" href="#web-form"></a></h3>
     A web page may contain <a href="https://html.spec.whatwg.org/multipage/forms.html#forms">web forms</a> accompanied by multiple input elements.
-A web form is usually accompanied by a submit button or similar clickable items bound to JavaScript code to send the filled input elements values to a server to process. The user selects an element to fill these input elements, then types from the keyboard or pastes from Clipboard. Since the source of data for the input elements is either from Clipboard or human input devices such as keyboard and JavaScript code, the validity of the value of these fields is unknown. 
+A web form is usually accompanied by a submit button or similar clickable items bound to JavaScript code to send the filled input elements values to a server to process. The user selects an element to fill these input elements, then types from the keyboard or pastes from Clipboard. 
+   <p>Since the source of data for the input elements is either from Clipboard or human input devices such as keyboard and JavaScript code, the validity of the value of these fields is unknown.</p>
    <h3 class="heading settled" data-level="1.3" id="verifiable-credentials"><span class="secno">1.3. </span><span class="content">Verifiable Credentials</span><a class="self-link" href="#verifiable-credentials"></a></h3>
     Verifiable Credentials <a data-link-type="biblio" href="#biblio-vc-data-model">[VC-DATA-MODEL]</a> (VC from now on) is a data model which provides a
 way to express credentials
-on the Web.
-One of the descriptions from the VC document states: "Information related to specific attributes or properties being asserted by the issuing authority about the subject (for example, nationality, the classes of vehicle entitled to drive, or date of birth)."
-In a VC, The property named <code>credentialSubject</code> contains key-value pairs of the attributes or the properties. 
+on the Web. 
+   <p>One of the descriptions from the VC document states: "Information related to specific attributes or properties being asserted by the issuing authority about the subject (for example, nationality, the classes of vehicle entitled to drive, or date of birth)."</p>
+   <p>In a VC, The property named <code>credentialSubject</code> contains key-value pairs of the attributes or the properties.</p>
    <h2 class="heading settled" data-level="2" id="verifiable-web-form"><span class="secno">2. </span><span class="content">Verifiable Web Form</span><a class="self-link" href="#verifiable-web-form"></a></h2>
     As discussed above, the data provided for input elements in web forms is not verifiable. VCs provide a way to provide third-party verified data. Introducing a way to provide a VC to the web form will provide verifiable form data. And the use of Clipboard to provide a natural interface for users. 
    <p>By introducing the following three updates to the interfaces between Clipboard and Application, verifiable data within web form -- Verifiable Web Form -- is possible.</p>
@@ -2011,7 +2012,7 @@ We need to evaluate with actual potential use cases in mind.
    <h2 class="heading settled" data-level="6" id="privacy-considerations"><span class="secno">6. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy-considerations"></a></h2>
    <ol>
     <li data-md>
-     <p>Since Clipboard is a shared resource among processes running on the application, the copied VCs are accessible from the processes monitoring the Clipboard. This clipboard content’s visibility may cause privacy risks.</p>
+     <p>Since Clipboard is a shared resource among processes running on a computer, the copied VCs are accessible from the processes monitoring the Clipboard. This clipboard content’s visibility may cause privacy risks.</p>
    </ol>
   </main>
 <script>
