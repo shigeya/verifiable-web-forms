@@ -19,7 +19,7 @@ Clipboard is a user interface abstraction commonly available among modern GUI-ba
 
 Clipboard may contain multiple representations of the copied information. I.e., a word processing app may write values to the Clipboard in text, formatted text, and even in HTML format. A drawing software may contain multiple standard image formats, both in vector and raster graphics, alongside internal representation. The representation can be either in binary or text. When the application reads the Clipboard, it selects the best representation for the current context.
 
-## Web Form
+## Web Forms
 A web page may contain [[HTML#forms|web forms]] accompanied by multiple input elements.
 A web form is usually accompanied by a submit button or similar clickable items bound to JavaScript code to send the filled input elements values to a server to process. The user selects an element to fill these input elements, then types from the keyboard or pastes from Clipboard.
 
@@ -34,10 +34,10 @@ One of the descriptions from the VC document states: "Information related to spe
 
 In a VC, The property named `credentialSubject` contains key-value pairs of the attributes or the properties.
 
-# Verifiable Web Form
+# Verifiable Web Forms
 As discussed above, the data provided for input elements in web forms is not verifiable. VCs provide a way to provide third-party verified data. Introducing a way to provide a VC to the web form will provide verifiable form data. And the use of Clipboard to provide a natural interface for users.
 
-By introducing the following three updates to the interfaces between Clipboard and Application, verifiable data within web form -- Verifiable Web Form -- is possible.
+By introducing the following three updates to the interfaces between Clipboard and Application, verifiable data within web forms -- Verifiable Web Forms -- is possible.
 
 - Introduction of a new Clipboard type for VC
 - Introduction of a new API to verify VCs
