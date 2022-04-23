@@ -6,8 +6,8 @@ Group: kbcl
 Status: DREAM
 Editor: Shigeya Suzuki, Keio University / WIDE Project, shigeya@wide.ad.jp
 Abstract: This document proposes Verifiable Web Forms -- a new way to provide Verifiable Credentials [VC-DATA-MODEL] to Web Browser via Clipboard.
-By using Verifiable Web Forms, users can provide third-party verified data with standard user interfaces without typing.
-The data is also verifiable on the server-side too.
+    By using Verifiable Web Forms, users can provide third-party verified data with standard user interfaces without typing.
+    The data is also verifiable on the server-side too.
 Markup Shorthands: markdown on, css off
 Local Boilerplate: copyright yes
 Text Macro: LONGSTATUS Design Memorandum
