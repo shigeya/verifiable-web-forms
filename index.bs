@@ -1,0 +1,103 @@
+<pre class='metadata'>
+Title: Verifiable Web Forms
+Shortname: verifiable-web-forms
+Level: 1
+Group: kbcl
+Status: DREAM
+Editor: Shigeya Suzuki, Keio University / WIDE Project, shigeya@wide.ad.jp
+Abstract: This document proposes Verifiable Web Forms -- a new way to provide Verifiable Credentials [VC-DATA-MODEL] to Web Browser via Clipboard. By using Verifiable Web Forms, users can provide third-party verified data with standard user interfaces without typing. The data is also verifiable on the server-side too.
+Markup Shorthands: markdown on, css off
+Local Boilerplate: copyright yes
+Text Macro: LONGSTATUS Design Memorandum
+Boilerplate: conformance no
+</pre>
+
+# Background and Terms
+
+## Clipboard and copy/paste user interface model
+Clipboard is a user interface abstraction commonly available among modern GUI-based operating systems. Users may select a piece of information from the part of the document user are currently editing or viewing, then copy the selected piece of information into the Clipboard that is part of the application or underlying operating system. The user then pastes the information into the same document or other documents - even in a different application program via Clipboard - as many times the user wants. This copy-and-paste abstraction is straightforward to understand. Some vendors provide a way to copy and paste to work among multiple devices.
+Clipboard may contain multiple representations of the copied information. I.e., a word processing app may write values to the Clipboard in text, formatted text, and even in HTML format. A drawing software may contain multiple standard image formats, both in vector and raster graphics, alongside internal representation. The representation can be either in binary or text. When the application reads the Clipboard, it selects the best representation for the current context.
+
+## Web Form
+A web page may contain [[HTML#forms|web forms]] accompanied by multiple input elements.
+A web form is usually accompanied by a submit button or similar clickable items bound to JavaScript code to send the filled input elements values to a server to process. The user selects an element to fill these input elements, then types from the keyboard or pastes from Clipboard. Since the source of data for the input elements is either from Clipboard or human input devices such as keyboard and JavaScript code, the validity of the value of these fields is unknown.
+
+## Verifiable Credentials
+Verifiable Credentials [[VC-DATA-MODEL]] (VC from now on) is a data model which provides a
+way to express credentials
+on the Web.
+One of the descriptions from the VC document states: "Information related to specific attributes or properties being asserted by the issuing authority about the subject (for example, nationality, the classes of vehicle entitled to drive, or date of birth)."
+In a VC, The property named `credentialSubject` contains key-value pairs of the attributes or the properties.
+
+# Verifiable Web Form
+As discussed above, the data provided for input elements in web forms is not verifiable. VCs provide a way to provide third-party verified data. Introducing a way to provide a VC to the web form will provide verifiable form data. And the use of Clipboard to provide a natural interface for users.
+
+By introducing the following three updates to the interfaces between Clipboard and Application, verifiable data within web form -- Verifiable Web Form -- is possible.
+
+- Introduction of a new Clipboard type for VC
+- Introduction of a new API to verify VCs
+- Introduction of a new Browser Behavior with VC in Clipboard
+
+Following is the discussion of the above three updates.
+
+## New clipboard type for VC
+The application program interface with Clipboard may read/write multiple types of representations. By introducing a new VC type common among multiple VC representation types, the application program may be able to read/write VC in **verifiable** format, alongside other formats such as text type.
+
+In other words, this allows Clipboard as a safe transport for VCs.
+
+## New System and Browser APIs for VCs
+Application programs need APIs in the Operating System’s Clipboard API or Browsers' Clipboard API to validate VCs given via the API or in the Clipboard.
+While it is possible to implement VC verification in the code in the web pages, The API is a handy and efficient way to verify VCs.
+
+## New Browser Behavior with VC in Clipboard
+Define a reasonable way to relate input elements in web forms with properties in credentialSubjects, filling each input element from verified VCs. Before its use, the code in the browser needs to judge whether the VCs are verified and usable.
+
+In addition to the input elements mentioned above, The clipboard-to-browser interface code may add or update a hidden input element with the VC used. The hidden elements with VCs can be part of the form data to backend servers, allowing backend servers to verify the VCs by themself.
+
+The following figure depicts the design.
+
+<div class="figure">
+    <IMG ALT="Verfiable Web Forms Scheme" src="VC2DOM.svg" height="300"/>
+</div>
+
+# Use cases
+
+Suppose you have a VC formatted digital business card. You can copy the business card into Clipboard. Then if you need to fill part of the contact information in a web form, you can paste the digital business card into the form to fill the part of the input elements without hustle.
+
+The application server, which will receive the form data, also receives VC as part of the form data; thus, verifying the input elements bound to the VCs the user paste is possible.
+
+Since it is possible to support multiple VCs onto a form, Users may select multiple VCs to fill a form verifiable.
+Multiple VC support allows filling multiple "contact person" inputs with multiple VCs.
+
+# Challenges
+The following is the list of currently known challenges.
+
+## Trust Store for the APIs
+How the application program running on the Web Browser can trust the issuer of the VCs needs discussion. The web application program developers need flexibility without complexity or maintenance burden.
+
+## When and Where to Verify
+When and where to verify the VC is an exciting topic.
+
+For example, there are potentially three possibilities for verification to happen:
+
+- On paste (or write) to Clipboard
+- On copy (or read) from Clipboard
+- When requested via Application API
+
+All of these have pros and cons.
+
+## Performance of Verification
+The verifier needs to be quick, especially if it involves user interaction. 
+We need to evaluate with actual potential use cases in mind.
+
+There will be MANY exciting questions from the point of view of optimizations. Can we cache the result? How long? Can the verification be on-demand? How do VCs depend on the issuers, and how does the chain of trust of issuers affect the responsiveness? The list will be very long.
+
+This topic will be a good discussion topic for Verifiable Web From discussion and the entire VC ecosystem.
+
+# Security Considerations
+
+1. If the application use API to verify the VC in a clipboard, some form of atomic guarantee is necessary between the call to verify and read the Clipboard. One of the ways to implement this is by adding an API to support verification and read with a call.
+
+# Privacy Considerations
+
+1. Since Clipboard is a shared resource among processes running on the application, the copied VCs are accessible from the processes monitoring the Clipboard. This clipboard content's visibility may cause privacy risks.
