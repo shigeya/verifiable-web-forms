@@ -127,9 +127,9 @@ This topic will be a good discussion topic for Verifiable Web From discussion an
 # Security Considerations
 
 1. If the application use API to verify the VC in a clipboard, some form of atomic guarantee is necessary between the call to verify and the read from the Clipboard.
-One of the ways to implement this is by adding an API to support verification and read with a call.
+    One of the ways to implement this is by adding an API to support verification and read with a call.
 
 # Privacy Considerations
 
 1. Since Clipboard is a shared resource among processes running on a computer, the copied VCs are accessible from the processes monitoring the Clipboard.
-This clipboard content's visibility may cause privacy risks.
+    This clipboard content's visibility may cause privacy risks.
