@@ -1488,7 +1488,7 @@ Possible extra rowspan handling
 	}
 </style>
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
-  <meta content="109024fff9a9a3426847626fdda2b376fce060ba" name="document-revision">
+  <meta content="ef9eec7cbf1d5e49bba295ea1343a42ccc4b955c" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1903,7 +1903,10 @@ dfn > a.self-link::before      { content: "#"; }
   </div>
   <div class="p-summary" data-fill-with="abstract">
    <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
-   <p>This document proposes Verifiable Web Forms -- a new way to provide Verifiable Credentials [VC-DATA-MODEL] to Web Browser via Clipboard. By using Verifiable Web Forms, users can provide third-party verified data with standard user interfaces without typing. The data is also verifiable on the server-side too.</p>
+   <p>This document proposes Verifiable Web Forms -- a new way to provide Verifiable Credentials [VC-DATA-MODEL] to Web Browser via Clipboard.
+
+    By using Verifiable Web Forms, users can provide third-party verified data with standard user interfaces without typing.
+    The data is also verifiable on the server-side too.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <nav data-fill-with="table-of-contents" id="toc">
@@ -1943,11 +1946,20 @@ dfn > a.self-link::before      { content: "#"; }
   <main>
    <h2 class="heading settled" data-level="1" id="background-and-terms"><span class="secno">1. </span><span class="content">Background and Terms</span><a class="self-link" href="#background-and-terms"></a></h2>
    <h3 class="heading settled" data-level="1.1" id="clipboard-and-copy-paste-user-interface-model"><span class="secno">1.1. </span><span class="content">Clipboard and copy/paste user interface model</span><a class="self-link" href="#clipboard-and-copy-paste-user-interface-model"></a></h3>
-    Clipboard is a user interface abstraction commonly available among modern GUI-based operating systems. Users may select a piece of information from the part of the document user are currently editing or viewing, then copy the selected piece of information into the Clipboard that is part of the application or underlying operating system. The user then pastes the information into the same document or other documents - even in a different application program via Clipboard - as many times the user wants. This copy-and-paste abstraction is straightforward to understand. Some vendors provide a way to copy and paste to work among multiple devices. 
-   <p>Clipboard may contain multiple representations of the copied information. I.e., a word processing app may write values to the Clipboard in text, formatted text, and even in HTML format. A drawing software may contain multiple standard image formats, both in vector and raster graphics, alongside internal representation. The representation can be either in binary or text. When the application reads the Clipboard, it selects the best representation for the current context.</p>
+    Clipboard is a user interface abstraction commonly available among modern GUI-based operating systems.
+Users may select a piece of information from the part of the document user are currently editing or viewing, then copy the selected piece of information into the Clipboard that is part of the application or underlying operating system.
+The user then pastes the information into the same document or other documents - even in a different application program via Clipboard - as many times the user wants.
+This copy-and-paste abstraction is straightforward to understand.
+Some vendors provide a way to copy and paste to work among multiple devices. 
+   <p>Clipboard may contain multiple representations of the copied information.
+I.e., a word processing app may write values to the Clipboard in text, formatted text, and even in HTML format.
+A drawing software may contain multiple standard image formats, both in vector and raster graphics, alongside internal representation.
+The representation can be either in binary or text.
+When the application reads the Clipboard, it selects the best representation for the current context.</p>
    <h3 class="heading settled" data-level="1.2" id="web-forms"><span class="secno">1.2. </span><span class="content">Web Forms</span><a class="self-link" href="#web-forms"></a></h3>
     A web page may contain <a href="https://html.spec.whatwg.org/multipage/forms.html#forms">web forms</a> accompanied by multiple input elements.
-A web form is usually accompanied by a submit button or similar clickable items bound to JavaScript code to send the filled input elements values to a server to process. The user selects an element to fill these input elements, then types from the keyboard or pastes from Clipboard. 
+A web form is usually accompanied by a submit button or similar clickable items bound to JavaScript code to send the filled input elements values to a server to process.
+The user selects an element to fill these input elements, then types from the keyboard or pastes from Clipboard. 
    <p>Since the source of data for the input elements is either from Clipboard or human input devices such as keyboard and JavaScript code, the validity of the value of these fields is unknown.</p>
    <h3 class="heading settled" data-level="1.3" id="verifiable-credentials"><span class="secno">1.3. </span><span class="content">Verifiable Credentials</span><a class="self-link" href="#verifiable-credentials"></a></h3>
     Verifiable Credentials <a data-link-type="biblio" href="#biblio-vc-data-model">[VC-DATA-MODEL]</a> (VC from now on) is a data model which provides a
@@ -1956,7 +1968,10 @@ on the Web.
    <p>One of the descriptions from the VC document states: "Information related to specific attributes or properties being asserted by the issuing authority about the subject (for example, nationality, the classes of vehicle entitled to drive, or date of birth)."</p>
    <p>In a VC, The property named <code>credentialSubject</code> contains key-value pairs of the attributes or the properties.</p>
    <h2 class="heading settled" data-level="2" id="verifiable-web-forms"><span class="secno">2. </span><span class="content">Verifiable Web Forms</span><a class="self-link" href="#verifiable-web-forms"></a></h2>
-    As discussed above, the data provided for input elements in web forms is not verifiable. VCs provide a way to provide third-party verified data. Introducing a way to provide a VC to the web form will provide verifiable form data. And the use of Clipboard to provide a natural interface for users. 
+    As discussed above, the data provided for input elements in web forms is not verifiable.
+VCs provide a way to provide third-party verified data.
+Introducing a way to provide a VC to the web form will provide verifiable form data.
+And the use of Clipboard to provide a natural interface for users. 
    <p>By introducing the following three updates to the interfaces between Clipboard and Application, verifiable data within web forms -- Verifiable Web Forms -- is possible.</p>
    <ul>
     <li data-md>
@@ -1968,25 +1983,31 @@ on the Web.
    </ul>
    <p>Following is the discussion of the above three updates.</p>
    <h3 class="heading settled" data-level="2.1" id="new-clipboard-type-for-vc"><span class="secno">2.1. </span><span class="content">New clipboard type for VC</span><a class="self-link" href="#new-clipboard-type-for-vc"></a></h3>
-    The application program interface with Clipboard may read/write multiple types of representations. By introducing a new VC type common among multiple VC representation types, the application program may be able to read/write VC in <strong>verifiable</strong> format, alongside other formats such as text type. 
+    The application program interface with Clipboard may read/write multiple types of representations.
+By introducing a new VC type common among multiple VC representation types, the application program may be able to read/write VC in <strong>verifiable</strong> format, alongside other formats such as text type. 
    <p>In other words, this allows Clipboard as a safe transport for VCs.</p>
    <h3 class="heading settled" data-level="2.2" id="new-system-and-browser-apis-for-vcs"><span class="secno">2.2. </span><span class="content">New System and Browser APIs for VCs</span><a class="self-link" href="#new-system-and-browser-apis-for-vcs"></a></h3>
     Application programs need APIs in the Operating System’s Clipboard API or Browsers' Clipboard API to validate VCs given via the API or in the Clipboard.
 While it is possible to implement VC verification in the code in the web pages, The API is a handy and efficient way to verify VCs. 
    <h3 class="heading settled" data-level="2.3" id="new-browser-behavior-with-vc-in-clipboard"><span class="secno">2.3. </span><span class="content">New Browser Behavior with VC in Clipboard</span><a class="self-link" href="#new-browser-behavior-with-vc-in-clipboard"></a></h3>
-    Define a reasonable way to relate input elements in web forms with properties in credentialSubjects, filling each input element from verified VCs. Before its use, the code in the browser needs to judge whether the VCs are verified and usable. 
-   <p>In addition to the input elements mentioned above, The clipboard-to-browser interface code may add or update a hidden input element with the VC used. The hidden elements with VCs can be part of the form data to backend servers, allowing backend servers to verify the VCs by themself.</p>
+    Define a reasonable way to relate input elements in web forms with properties in credentialSubjects, filling each input element from verified VCs.
+Before its use, the code in the browser needs to judge whether the VCs are verified and usable. 
+   <p>In addition to the input elements mentioned above, The clipboard-to-browser interface code may add or update a hidden input element with the VC used.
+The hidden elements with VCs can be part of the form data to backend servers, allowing backend servers to verify the VCs by themself.</p>
    <p>The following figure depicts the design.</p>
    <div class="figure"> <img alt="Verfiable Web Forms Scheme" height="300" src="VC2DOM.svg"> </div>
    <h2 class="heading settled" data-level="3" id="use-cases"><span class="secno">3. </span><span class="content">Use cases</span><a class="self-link" href="#use-cases"></a></h2>
-   <p>Suppose you have a VC formatted digital business card. You can copy the business card into Clipboard. Then if you need to fill part of the contact information in a web form, you can paste the digital business card into the form to fill the part of the input elements without hustle.</p>
+   <p>Suppose you have a VC formatted digital business card.
+You can copy the business card into Clipboard.
+Then if you need to fill part of the contact information in a web form, you can paste the digital business card into the form to fill the part of the input elements without hustle.</p>
    <p>The application server, which will receive the form data, also receives VC as part of the form data; thus, verifying the input elements bound to the VCs the user paste is possible.</p>
    <p>Since it is possible to support multiple VCs onto a form, Users may select multiple VCs to fill a form verifiable.
 Multiple VC support allows filling multiple "contact person" inputs with multiple VCs.</p>
    <h2 class="heading settled" data-level="4" id="challenges"><span class="secno">4. </span><span class="content">Challenges</span><a class="self-link" href="#challenges"></a></h2>
     The following is the list of currently known challenges. 
    <h3 class="heading settled" data-level="4.1" id="trust-store-for-the-apis"><span class="secno">4.1. </span><span class="content">Trust Store for the APIs</span><a class="self-link" href="#trust-store-for-the-apis"></a></h3>
-    How the application program running on the Web Browser can trust the issuer of the VCs needs discussion. The web application program developers need flexibility without complexity or maintenance burden. 
+    How the application program running on the Web Browser can trust the issuer of the VCs needs discussion.
+The web application program developers need flexibility without complexity or maintenance burden. 
    <h3 class="heading settled" data-level="4.2" id="when-and-where-to-verify"><span class="secno">4.2. </span><span class="content">When and Where to Verify</span><a class="self-link" href="#when-and-where-to-verify"></a></h3>
     When and where to verify the VC is an exciting topic. 
    <p>For example, there are potentially three possibilities for verification to happen:</p>
@@ -2000,19 +2021,26 @@ Multiple VC support allows filling multiple "contact person" inputs with multipl
    </ul>
    <p>All of these have pros and cons.</p>
    <h3 class="heading settled" data-level="4.3" id="performance-of-verification"><span class="secno">4.3. </span><span class="content">Performance of Verification</span><a class="self-link" href="#performance-of-verification"></a></h3>
-    The verifier needs to be quick, especially if it involves user interaction. 
+    The verifier needs to be quick, especially if it involves user interaction.
 We need to evaluate with actual potential use cases in mind. 
-   <p>There will be MANY exciting questions from the point of view of optimizations. Can we cache the result? How long? Can the verification be on-demand? How do VCs depend on the issuers, and how does the chain of trust of issuers affect the responsiveness? The list will be very long.</p>
+   <p>There will be MANY exciting questions from the point of view of optimizations.
+Can we cache the result?
+How long can we keep the cached result?
+Can the verification be on-demand?
+How do VCs depend on the issuers, and how does the chain of trust of issuers affect the responsiveness?
+The list can be very long.</p>
    <p>This topic will be a good discussion topic for Verifiable Web From discussion and the entire VC ecosystem.</p>
    <h2 class="heading settled" data-level="5" id="security-considerations"><span class="secno">5. </span><span class="content">Security Considerations</span><a class="self-link" href="#security-considerations"></a></h2>
    <ol>
     <li data-md>
-     <p>If the application use API to verify the VC in a clipboard, some form of atomic guarantee is necessary between the call to verify and read the Clipboard. One of the ways to implement this is by adding an API to support verification and read with a call.</p>
+     <p>If the application use API to verify the VC in a clipboard, some form of atomic guarantee is necessary between the call to verify and the read from the Clipboard.
+One of the ways to implement this is by adding an API to support verification and read with a call.</p>
    </ol>
    <h2 class="heading settled" data-level="6" id="privacy-considerations"><span class="secno">6. </span><span class="content">Privacy Considerations</span><a class="self-link" href="#privacy-considerations"></a></h2>
    <ol>
     <li data-md>
-     <p>Since Clipboard is a shared resource among processes running on a computer, the copied VCs are accessible from the processes monitoring the Clipboard. This clipboard content’s visibility may cause privacy risks.</p>
+     <p>Since Clipboard is a shared resource among processes running on a computer, the copied VCs are accessible from the processes monitoring the Clipboard.
+This clipboard content’s visibility may cause privacy risks.</p>
    </ol>
   </main>
 <script>
